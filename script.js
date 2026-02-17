@@ -9,10 +9,11 @@ async function generateScript(topic) {
       messages: [
         {
           role: "user",
-          content: `Write a 30-second YouTube Shorts script about ${topic}.
-Start with a shocking hook.
-Keep sentences short.
-End with a verdict.`
+          content: `Write a YouTube Shorts script about ${topic}.
+Maximum 80 words.
+Must be under 35 seconds of speech.
+Short punchy sentences.
+`
         }
       ]
     },

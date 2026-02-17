@@ -10,12 +10,12 @@ async function uploadVideo(title) {
   );
 
   oauth2Client.setCredentials({
-    refresh_token: process.env.YOUTUBE_REFRESH_TOKEN
+    refresh_token: process.env.YOUTUBE_REFRESH_TOKEN,
   });
 
   const youtube = google.youtube({
     version: "v3",
-    auth: oauth2Client
+    auth: oauth2Client,
   });
 
   await youtube.videos.insert({
@@ -24,16 +24,18 @@ async function uploadVideo(title) {
       snippet: {
         title: title + " #shorts",
         description: "AI Experiment 🚀",
-        tags: ["AI", "automation", "shorts"]
+        tags: ["AI", "automation", "shorts"],
       },
       status: {
-        privacyStatus: "public"
-      }
+        privacyStatus: "private", // safer while testing
+      },
     },
     media: {
-      body: fs.createReadStream("output/final.mp4")
-    }
+      body: fs.createReadStream("output/final.mp4"),
+    },
   });
+
+  console.log("Upload successful 🚀");
 }
 
 module.exports = uploadVideo;
